@@ -1,0 +1,9 @@
+data
+database
+spider
+__pycache__/
+.idea
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
