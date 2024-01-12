@@ -1,7 +1,7 @@
 import re
 import sqlite3
-from sqlgpt_parser.parser.mysql_parser import parser
-from sqlgpt_parser.parser.parser_utils import ParserUtils
+from sql_metadata.parser.mysql_parser import parser
+from sql_metadata.parser.parser_utils import ParserUtils
 
 
 def find_column_in_tables(column, tables):

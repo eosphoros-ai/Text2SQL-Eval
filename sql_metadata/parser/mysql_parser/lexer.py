@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 import re
 from ply import lex
 
-from sqlgpt_parser.parser.mysql_parser.reserved import (
+from sql_metadata.parser.mysql_parser.reserved import (
     reversed,
     nonreserved,
     not_keyword_token,

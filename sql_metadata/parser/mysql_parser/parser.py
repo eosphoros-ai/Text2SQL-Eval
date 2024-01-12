@@ -14,7 +14,7 @@ from __future__ import print_function
 
 import types, threading
 
-from sqlgpt_parser.parser.tree.window import (
+from sql_metadata.parser.tree.window import (
     FrameBound,
     FrameClause,
     FrameExpr,
@@ -23,9 +23,9 @@ from sqlgpt_parser.parser.tree.window import (
     WindowSpec,
 )
 
-from sqlgpt_parser.parser.tree.with_stmt import CommonTableExpr, With, WithHasQuery
-from sqlgpt_parser.parser.tree.index_type import IndexType
-from sqlgpt_parser.parser.tree.expression import (
+from sql_metadata.parser.tree.with_stmt import CommonTableExpr, With, WithHasQuery
+from sql_metadata.parser.tree.index_type import IndexType
+from sql_metadata.parser.tree.expression import (
     AggregateFunc,
     ArithmeticBinaryExpression,
     ArithmeticUnaryExpression,
@@ -61,9 +61,9 @@ from sqlgpt_parser.parser.tree.expression import (
     JsonTableColumn,
     TimeInterval,
 )
-from sqlgpt_parser.parser.tree.grouping import SimpleGroupBy
-from sqlgpt_parser.parser.tree.join_criteria import JoinOn, JoinUsing, NaturalJoin
-from sqlgpt_parser.parser.tree.literal import (
+from sql_metadata.parser.tree.grouping import SimpleGroupBy
+from sql_metadata.parser.tree.join_criteria import JoinOn, JoinUsing, NaturalJoin
+from sql_metadata.parser.tree.literal import (
     BooleanLiteral,
     DateLiteral,
     DoubleLiteral,
@@ -75,21 +75,21 @@ from sqlgpt_parser.parser.tree.literal import (
     ErrorLiteral,
     TimestampLiteral,
 )
-from sqlgpt_parser.parser.tree.node import Node
-from sqlgpt_parser.parser.tree.qualified_name import QualifiedName
-from sqlgpt_parser.parser.tree.query_specification import QuerySpecification
-from sqlgpt_parser.parser.tree.relation import AliasedRelation, Join
-from sqlgpt_parser.parser.tree.select import Select
-from sqlgpt_parser.parser.tree.select_item import Partition, SingleColumn
-from sqlgpt_parser.parser.tree.set_operation import Except, Intersect, Union
-from sqlgpt_parser.parser.tree.sort_item import ByItem, PartitionByClause, SortItem
-from sqlgpt_parser.parser.tree.statement import Delete, Insert, Query, Update
-from sqlgpt_parser.parser.tree.table import Table
-from sqlgpt_parser.parser.tree.values import Values
-from sqlgpt_parser.parser.tree.field_type import UNSPECIFIEDLENGTH, FieldType, SQLType
+from sql_metadata.parser.tree.node import Node
+from sql_metadata.parser.tree.qualified_name import QualifiedName
+from sql_metadata.parser.tree.query_specification import QuerySpecification
+from sql_metadata.parser.tree.relation import AliasedRelation, Join
+from sql_metadata.parser.tree.select import Select
+from sql_metadata.parser.tree.select_item import Partition, SingleColumn
+from sql_metadata.parser.tree.set_operation import Except, Intersect, Union
+from sql_metadata.parser.tree.sort_item import ByItem, PartitionByClause, SortItem
+from sql_metadata.parser.tree.statement import Delete, Insert, Query, Update
+from sql_metadata.parser.tree.table import Table
+from sql_metadata.parser.tree.values import Values
+from sql_metadata.parser.tree.field_type import UNSPECIFIEDLENGTH, FieldType, SQLType
 
 from ply import yacc
-from sqlgpt_parser.parser.mysql_parser.lexer import tokens, lexer
+from sql_metadata.parser.mysql_parser.lexer import tokens, lexer
 
 tokens = tokens
 

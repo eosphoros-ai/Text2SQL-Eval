@@ -20,6 +20,7 @@ from transformers import (
     LlamaForCausalLM,
     StoppingCriteria,
 )
+from peft import PeftModel
 
 from utils.extract_sql_meta import isConstCanFind, convert_schema, fetch_column_all_value, is_number
 
@@ -121,9 +122,12 @@ def load_model_tokenizer(path, model_type=None, peft_path=None, quantization=Non
         trust_remote_code=True,
         # use_safetensors=False,
     )
-
-    print("Loading Original MODEL...")
-    model = base_model
+    if peft_path:
+        print("Loading PEFT MODEL...")
+        model = PeftModel.from_pretrained(base_model, peft_path, torch_dtype=torch_dtype)
+    else:
+        print("Loading Original MODEL...")
+        model = base_model
 
     model.eval()
 
@@ -296,9 +300,9 @@ def second_round_prompt_check_constrain(sql, may_be_other_fields, db_list):
     return '\n'.join(prompt_str_list)
 
 
-def start_inference(base_model_path, valid_file_path, db_dir):
+def start_inference(base_model_path, peft_path, valid_file_path, db_dir):
     content_list, database_list = load_test_data(valid_file_path)
-    model, tokenizer = load_model_tokenizer(base_model_path, model_type='deepseek',
+    model, tokenizer = load_model_tokenizer(base_model_path, peft_path= peft_path, model_type='deepseek',
                                             eos_token='<｜end▁of▁sentence｜>', pad_token='<｜end▁of▁sentence｜>')
     cnt, err = 0, 0
     predict_result = []
@@ -330,7 +334,7 @@ def start_inference(base_model_path, valid_file_path, db_dir):
 
 
 def main(opt):
-    predict_result = start_inference(opt.model_path, opt.eval_file, opt.base_dir)
+    predict_result = start_inference(opt.model_path,opt.peft_path, opt.eval_file, opt.base_dir)
     with open(opt.output, 'w') as f:
         f.write("\n".join(predict_result))
         f.flush()
@@ -342,5 +346,6 @@ if __name__ == "__main__":
     parser_arg.add_argument('--eval_file', type=str, default="./data/preprocessed_data/resdsql_dev.json")
     parser_arg.add_argument('--base_dir', type=str, default="./data/preprocessed_data/spider/database")
     parser_arg.add_argument('--output', type=str, default="./predict_result/sqlgpt.sql")
+    parser_arg.add_argument('--peft_path', type=str, default=None)
     opt = parser_arg.parse_args()
     main(opt)
