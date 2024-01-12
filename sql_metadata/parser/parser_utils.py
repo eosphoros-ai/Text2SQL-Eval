@@ -11,22 +11,22 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 """
 import copy
 
-from sqlgpt_parser.parser.tree.grouping import GroupingSets, SimpleGroupBy
-from sqlgpt_parser.parser.tree.literal import StringLiteral, Literal
-from sqlgpt_parser.parser.tree.qualified_name import QualifiedName
-from sqlgpt_parser.parser.tree.visitor import DefaultTraversalVisitor
-from sqlgpt_parser.parser.tree.expression import (
+from sql_metadata.parser.tree.grouping import GroupingSets, SimpleGroupBy
+from sql_metadata.parser.tree.literal import StringLiteral, Literal
+from sql_metadata.parser.tree.qualified_name import QualifiedName
+from sql_metadata.parser.tree.visitor import DefaultTraversalVisitor
+from sql_metadata.parser.tree.expression import (
     InListExpression,
     QualifiedNameReference,
     SubqueryExpression,
 )
-from sqlgpt_parser.parser.tree.query_specification import QuerySpecification
-from sqlgpt_parser.parser.tree.join_criteria import JoinOn, JoinUsing
-from sqlgpt_parser.parser.tree.relation import AliasedRelation
-from sqlgpt_parser.parser.tree.table import Table
-from sqlgpt_parser.utils.untils import convert_nested_strings_to_lowercase, get_string_values
-from sqlgpt_parser.parser.tree.statement import Delete, Insert, Query, Update
-from sqlgpt_parser.parser.tree.set_operation import Except, Intersect, Union
+from sql_metadata.parser.tree.query_specification import QuerySpecification
+from sql_metadata.parser.tree.join_criteria import JoinOn, JoinUsing
+from sql_metadata.parser.tree.relation import AliasedRelation
+from sql_metadata.parser.tree.table import Table
+from sql_metadata.utils.untils import convert_nested_strings_to_lowercase, get_string_values
+from sql_metadata.parser.tree.statement import Delete, Insert, Query, Update
+from sql_metadata.parser.tree.set_operation import Except, Intersect, Union
 
 
 class ParserUtils(object):
